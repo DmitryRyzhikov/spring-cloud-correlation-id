@@ -16,9 +16,7 @@ inside CorrelationIdStorage to be able access it in business logic.
 * Consumer calls Producer via RestTemplate. We need to add CorrelationIdAddInterceptor interceptor to RestTemplate
 that will be able to extract correlation ID from ThreadLocal and add it as header to request to Producer. Below is
 full log of different processing stages in Consumer - from filter - to controller - to service
-
-
-
+```
     Consumer. No correlationId found in Header. Generated : be1642c9-2291-43d8-871a-7132f4de12c0
 
     Consumer-filter. Thread ID [29] and thread name [http-nio-8080-exec-1]. Correlation ID [be1642c9-2291-43d8-871a-7132f4de12c0]
@@ -30,7 +28,7 @@ full log of different processing stages in Consumer - from filter - to controlle
     Consumer-service-with-hystrix-annotation. Thread ID [29] and thread name [http-nio-8080-exec-1]. Correlation ID [be1642c9-2291-43d8-871a-7132f4de12c0]
 
     Consumer. Passing correlation ID down the call chain in response : be1642c9-2291-43d8-871a-7132f4de12c0
-
+```
 * Producer accepts call from Consumer. This call intercepted by consumer CorrelationHeaderFilter. Filter checks,
 that Request contains header "Correlation-Id", and if so put it to LocalThread variable inside CorrelationIdStorage
 to be able access it in business logic.
