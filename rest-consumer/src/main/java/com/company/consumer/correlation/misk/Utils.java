@@ -1,9 +1,10 @@
-package com.baeldung.spring.cloud.hystrix.rest.consumer.misk;
+package com.company.consumer.correlation.misk;
 
-/**
- * Created by ryzhikov.d on 15.05.2017.
- */
 public class Utils {
+
+    private Utils() {
+        // utility class, should not be instantiated
+    }
 
     public static void logThreadDetails(String client) {
         // block for tracking thread parameters and correlation ID

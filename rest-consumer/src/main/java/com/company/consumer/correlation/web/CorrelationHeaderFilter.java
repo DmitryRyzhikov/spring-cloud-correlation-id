@@ -1,7 +1,8 @@
-package com.baeldung.spring.cloud.hystrix.rest.producer.web;
+package com.company.consumer.correlation.web;
 
 
-import com.baeldung.spring.cloud.hystrix.rest.producer.misk.CorrelationIdStorage;
+import com.company.consumer.correlation.misk.CorrelationIdStorage;
+import com.company.consumer.correlation.misk.Utils;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.Filter;
@@ -11,8 +12,6 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpServletResponseWrapper;
 import java.io.IOException;
 import java.util.UUID;
 
@@ -31,20 +30,19 @@ public class CorrelationHeaderFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
             throws IOException, ServletException {
-
-        System.out.println("Producer. CorrelationHeaderFilter entry point");
-
         final HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
         String currentCorrId = httpServletRequest.getHeader(CorrelationIdStorage.CORRELATION_ID_HEADER);
 
         if (currentCorrId == null) {
             currentCorrId = UUID.randomUUID().toString();
-            System.out.println("Producer. No correlationId found in Header. Generated : " + currentCorrId);
+            System.out.println("Consumer. No correlationId found in Header. Generated : " + currentCorrId);
         } else {
-            System.out.println("Producer. Found correlationId in Header : " + currentCorrId);
+            System.out.println("Consumer. Found correlationId in Header : " + currentCorrId);
         }
 
         CorrelationIdStorage.setId(currentCorrId);
+
+        Utils.logThreadDetails("Consumer-filter");
 
         filterChain.doFilter(httpServletRequest, servletResponse);
     }

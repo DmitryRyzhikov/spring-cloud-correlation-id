@@ -1,4 +1,4 @@
-package com.baeldung.spring.cloud.hystrix.rest.consumer.misk;
+package com.company.producer.correlation.misc;
 
 
 /**

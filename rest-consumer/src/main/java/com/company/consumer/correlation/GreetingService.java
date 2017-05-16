@@ -1,7 +1,7 @@
-package com.baeldung.spring.cloud.hystrix.rest.consumer;
+package com.company.consumer.correlation;
 
-import com.baeldung.spring.cloud.hystrix.rest.consumer.misk.Utils;
-import com.baeldung.spring.cloud.hystrix.rest.consumer.web.CorrelationIdAddInterceptor;
+import com.company.consumer.correlation.misk.Utils;
+import com.company.consumer.correlation.web.CorrelationIdAddInterceptor;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.stereotype.Service;

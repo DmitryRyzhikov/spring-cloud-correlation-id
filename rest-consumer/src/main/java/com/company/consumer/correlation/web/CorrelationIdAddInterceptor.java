@@ -1,6 +1,7 @@
-package com.baeldung.spring.cloud.hystrix.rest.consumer.web;
+package com.company.consumer.correlation.web;
 
-import com.baeldung.spring.cloud.hystrix.rest.consumer.misk.CorrelationIdStorage;
+import com.company.consumer.correlation.GreetingService;
+import com.company.consumer.correlation.misk.CorrelationIdStorage;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;
@@ -13,7 +14,7 @@ import java.io.IOException;
 /**
  * Intercepts requests to remote services done via RestTemplate and add correlations ID header with value
  * to such requests. Should be registered as RestTemplate interceptor
- * {@link com.baeldung.spring.cloud.hystrix.rest.consumer.GreetingService#init}
+ * {@link GreetingService#init}
  */
 @Component
 public class CorrelationIdAddInterceptor implements ClientHttpRequestInterceptor {

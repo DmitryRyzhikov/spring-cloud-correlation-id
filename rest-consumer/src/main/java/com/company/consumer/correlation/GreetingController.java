@@ -1,8 +1,7 @@
-package com.baeldung.spring.cloud.hystrix.rest.consumer;
+package com.company.consumer.correlation;
 
-import com.baeldung.spring.cloud.hystrix.rest.consumer.misk.Utils;
+import com.company.consumer.correlation.misk.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
