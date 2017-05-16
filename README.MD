@@ -32,12 +32,13 @@ full log of different processing stages in Consumer - from filter - to controlle
 * Producer accepts call from Consumer. This call intercepted by consumer CorrelationHeaderFilter. Filter checks,
 that Request contains header "Correlation-Id", and if so put it to LocalThread variable inside CorrelationIdStorage
 to be able access it in business logic.
-
-
+```
     Producer. Found correlationId in Header : be1642c9-2291-43d8-871a-7132f4de12c0
-    Producer. Passing correlation ID down the call chain in response : be1642c9-2291-43d8-871a-7132f4de12c0
-    Producer access. Should get correlation ID from consumer in case if accessed not directly : be1642c9-2291-43d8-871a-7132f4de12c0
 
+    Producer. Passing correlation ID down the call chain in response : be1642c9-2291-43d8-871a-7132f4de12c0
+
+    Producer access. Should get correlation ID from consumer in case if accessed not directly : be1642c9-2291-43d8-871a-7132f4de12c0
+```
 *IMPORTANT* Consumer uses @HystrixCommand annotation inside GreetingService. In case if method under this annotation
 is called directly from controller, it will be called in separate Thread - so it WILL BE IMPOSSIBLE TO EXTRACT VALUE
 FROM THREAD LOCAL VARIABLE WITH CORRELATION ID. To avoid this - use technique of calling annotated method from another
@@ -47,13 +48,11 @@ method inside service. Probably prob
 * To run producer
     - Run maven target: rest-producer [spring-boot:run]
 * To check that producer is working
-
-
+```
     curl http://localhost:9090/greeting/Cid
         Expected output:
     Hello Cid!
-
-
+```
 ## CONSUMER HYSTRIX <a name="CONSUMER"/>
 Consumer is the service that should access working producer via RestTemplate. Works via Hystrix - that
 mean that in case if PRODUCER will not be available, Hystrix fallback method will work.
@@ -63,21 +62,19 @@ mean that in case if PRODUCER will not be available, Hystrix fallback method wil
 * To run consumer
     - Run maven target: rest-consumer [spring-boot:run]
 * To check that consumer is working type in browser:
-
-
+```
     http://localhost:8080/get-greeting/Cid
     curl http://localhost:8080/get-greeting/Cid
 
     Expected output:
     Hello Cid!
-
+```
 * To check that Hystrix fallback is working - shut down PRODUCER and type in browser. Instead of greeting to Cid,
 greeting to user will be shown.
-
-
+```
     http://localhost:8080/get-greeting/Cid
 
     Expected output:
     Hello User!
-
+```
 * If we will start producer again, consumer will show greeting to Cid.
