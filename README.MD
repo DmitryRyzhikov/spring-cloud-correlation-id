@@ -19,10 +19,15 @@ full log of different processing stages in Consumer - from filter - to controlle
 
 `
     Consumer. No correlationId found in Header. Generated : be1642c9-2291-43d8-871a-7132f4de12c0
+
     Consumer-filter. Thread ID [29] and thread name [http-nio-8080-exec-1]. Correlation ID [be1642c9-2291-43d8-871a-7132f4de12c0]
+
     Consumer-controller. Thread ID [29] and thread name [http-nio-8080-exec-1]. Correlation ID [be1642c9-2291-43d8-871a-7132f4de12c0]
+
     Consumer-service. Thread ID [29] and thread name [http-nio-8080-exec-1]. Correlation ID [be1642c9-2291-43d8-871a-7132f4de12c0]
+
     Consumer-service-with-hystrix-annotation. Thread ID [29] and thread name [http-nio-8080-exec-1]. Correlation ID [be1642c9-2291-43d8-871a-7132f4de12c0]
+
     Consumer. Passing correlation ID down the call chain in response : be1642c9-2291-43d8-871a-7132f4de12c0
 `
 * Producer accepts call from Consumer. This call intercepted by consumer CorrelationHeaderFilter. Filter checks,
