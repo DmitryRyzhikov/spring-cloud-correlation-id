@@ -18,6 +18,7 @@ that will be able to extract correlation ID from ThreadLocal and add it as heade
 full log of different processing stages in Consumer - from filter - to controller - to service
 
 
+
     Consumer. No correlationId found in Header. Generated : be1642c9-2291-43d8-871a-7132f4de12c0
 
     Consumer-filter. Thread ID [29] and thread name [http-nio-8080-exec-1]. Correlation ID [be1642c9-2291-43d8-871a-7132f4de12c0]
